@@ -1,0 +1,6 @@
+users:
+  # "admin" here is username
+  admin:
+    name: "Admin"
+    password: "1234"
+    email: me@email.net

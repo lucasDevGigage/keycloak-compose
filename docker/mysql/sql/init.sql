@@ -1,0 +1,6 @@
+CREATE SCHEMA IF NOT EXISTS kc_db;
+
+CREATE USER 'kc_admin'@'%' IDENTIFIED BY 'kc_password';
+GRANT ALL PRIVILEGES ON kc_db.* TO 'kc_admin'@'%';
+
+FLUSH PRIVILEGES;
