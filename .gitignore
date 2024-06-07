@@ -1,0 +1,7 @@
+**/db
+**/database
+**/data
+
+**/.env
+**/.vscode
+**/node_modules
