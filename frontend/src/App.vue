@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {auth} from "./auth";
+import {onMounted} from "vue";
+import {RouterView} from "vue-router";
+import {useAuthStore} from "./store/auth";
 
-const data = ref();
+const auth = useAuthStore();
 
 onMounted(async () => {
-  const client = await auth();
-
-  data.value = await client?.loadUserInfo();
+  await auth.login();
 });
 </script>
 
 <template>
   <div>
-    {{ data }}
+    <div>
+      <button v-if="auth.authenticated" @click="auth.logout">Logout</button>
+    </div>
+
+    <RouterView />
   </div>
 </template>

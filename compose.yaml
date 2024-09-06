@@ -26,11 +26,12 @@ services:
     restart: unless-stopped
     command:
       [
-        "start-dev",
+        "start",
         "--http-port",
         "7080",
         "--https-port",
-        "7443"
+        "7443",
+
       ]
     environment:
       KC_HOSTNAME: localhost
@@ -46,10 +47,15 @@ services:
       KC_DB_PASSWORD: kc_password
       KC_DB_URL_HOST: mariadb
       KC_DB_URL_PORT: 3306
+      KC_HTTP_ENABLED: true
+      KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key
 
     volumes:
       - ./docker/keycloak/themes:/opt/keycloak/themes/
       - ./docker/keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - ./server.crt:/opt/keycloak/conf/server.crt
+      - ./server.key:/opt/keycloak/conf/server.key
     ports:
       - 7080:7080
       - 7443:7443
